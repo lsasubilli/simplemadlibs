@@ -1,3 +1,6 @@
+"""
+This project is a madlib game. It asks the user for a series of nouns, adverbs, verbs etc twice and randomizes them in to the story
+"""
 #importing modules from libraries
 import random
 import time, sys
@@ -6,7 +9,7 @@ import time, sys
 #This is a cool animation I found in a tutorial
 def introduction():
     print_fast(
-        "\033[1;37;50m ----------------------Welcome 𝖙𝖔 the 𝖌𝖆𝖒𝖊 𝖔𝖋 Madlibs!--------------------- \033[3;2;15m\n"
+        "\033[1;37;55m -------------------------------------------Welcome 𝖙𝖔 the 𝖌𝖆𝖒𝖊 𝖔𝖋 Madlibs!---------------------------------------- \033[3;2;15m\n"
     )
     print_slow(
         "Basic Rules: Fill in each of the blank spaces with the appropriate type of word.Each blank notes what kind of word goes there, such as a noun, verb or adjective.\n"
@@ -18,7 +21,7 @@ def print_slow(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(.04)
+        time.sleep(.05)
 
 
 def print_fast(str):
@@ -42,11 +45,9 @@ def print_board(board):
 noun_list = []
 
 #defining nouns and repeating 2 times
-
-
 def nouns():
     for x in range(2):
-        user_nouns = input("To get started, enter a noun: ")
+        user_nouns = input("Enter a noun: ")
         noun_list.append(user_nouns)
 
 
@@ -89,18 +90,18 @@ def past_verbs():
         user_tense = input("Enter a pastense verb: ")
         pastense_list.append(user_tense)
 
-
-def main():
+#main parts
+def main_output():
     while True:
 
         genre_list = ['Trip to the zoo', 'Monkey king']
         print(genre_list)
         genre = input(
-            "Press 1 for Trip to the zoo.Press 2 for monkey king: ")
+            "Press 1 for an adventurous madlib. Press 2 for a funny madlib: ")
         if (genre == "1"):
             print_slow(
                 "Today I went to the zoo and I saw a(n) " +
-                random.choice(adjective_list) + "" +
+                random.choice(adjective_list) + " " +
                 random.choice(noun_list) +
                 " jumping up and down on its tree. " + " "
                 "He" + " " + random.choice(pastense_list) + " " +
@@ -108,7 +109,7 @@ def main():
                 " through the large tunnel that led to its " + "" +
                 random.choice(adjective_list) + " " + " " +
                 random.choice(noun_list) +
-                " I got some peanuts and passed them through the cage to a gigantic gray \n"
+                ". I got some peanuts and passed them through the cage to a gigantic gray "
                 + random.choice(noun_list) + "\n " +
                 "towering above my head." + "I went to get a \n" +
                 random.choice(adjective_list) + " scoop of ice cream." +
@@ -130,12 +131,37 @@ def main():
                 "Later that same day, I saw the monkey king dance " +
                 random.choice(adverb_list) + " " +
                 "infront of an audience of kangaroos and wombats.")
+            
+                
             break
         else:
-          print_fast("You have entered an invalid option.")
-          genre = input("Press 1 for Trip to the zoo.Press 2 for monkey king: ")
           
-              
+          genre = input("Invalid option. Press 1 for an adventurous madlib. Press 2 for a funny madlib: ")
+          
+def another_madlib():
+  another_one=input("Would you like to try a funny madlib? Enter 1 for yes or enter 2 for no: ")         
+  if another_one=="1":
+    nouns()
+    verbs()
+    adjectives()
+    adverbs()
+    past_verbs()
+    print_fast(
+                "The day I saw the monkey king " + random.choice(verb_list) +
+                "was one of the most interesting days of the year. " +
+                "After he did that, the king played chess on his brother's " +
+                random.choice(noun_list) + " and then combined his " +
+                random.choice(adjective_list) + " " +
+                "hair with a comb made out of old fish bones. " +
+                "Later that same day, I saw the monkey king dance " +
+                random.choice(adverb_list) + " " +
+                "infront of an audience of kangaroos and wombats.")
+    print_slow("Thanks for playing madlibs!")
+  else:
+    print_fast("Thanks for playing madlibs!")
+                
+                
+
                 
 
 
@@ -145,4 +171,5 @@ verbs()
 adjectives()
 adverbs()
 past_verbs()
-main()
+main_output()
+another_madlib()
